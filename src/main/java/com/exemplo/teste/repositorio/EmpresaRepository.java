@@ -1,8 +1,11 @@
-package com.exemple.teste.repositorio;
+package com.exemplo.teste.repositorio;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.exemple.teste.modelo.Empresa;
+import org.springframework.stereotype.Repository;
 
+import com.exemplo.teste.modelo.Empresa;
+
+@Repository
 public interface EmpresaRepository extends JpaRepository<Empresa, Integer>{
 
 	Empresa findByNome(String nome);

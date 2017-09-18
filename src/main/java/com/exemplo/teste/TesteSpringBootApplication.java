@@ -1,5 +1,7 @@
-package com.example.teste;
 
+package com.exemplo.teste;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.exemple.teste.modelo.Empresa;
-import com.exemple.teste.repositorio.EmpresaRepository;
+import com.exemplo.teste.modelo.Empresa;
+import com.exemplo.teste.repositorio.EmpresaRepository;
 
 @SpringBootApplication
 public class TesteSpringBootApplication {
@@ -19,26 +21,29 @@ public class TesteSpringBootApplication {
 	private EmpresaRepository empresaRepository;
 
 	public static void main(String[] args) {
+		System.out.println("####################  ----  inicio   -----   ######################");
 		SpringApplication.run(TesteSpringBootApplication.class, args);
-		System.out.println("teste");
+		System.out.println("####################  ----  fim   -----   ######################");
 		
 	}
 	
+	
 	@Bean
-	public CommandLineRunner commandLineRunner() {
+	public CommandLineRunner rodar() {
 		return args -> {
 			Empresa empresa = new Empresa();
 			empresa.setNome("MaTec");
 			
 			this.empresaRepository.save(empresa);
 			
-			List<Empresa> listaEmpresa = empresaRepository.findAll();
+			List<Empresa> listaEmpresa = (ArrayList<Empresa>) this.empresaRepository.findAll();
 			listaEmpresa.forEach(System.out::println);
 			
-			Empresa empresaPorNome = empresaRepository.findByNome("MaTec");
+			Empresa empresaPorNome = this.empresaRepository.findByNome("MaTec");
 			System.out.println("Busca empresa por nome:" + empresaPorNome.toString());
 			
 		};
 	}
+	
 	
 }

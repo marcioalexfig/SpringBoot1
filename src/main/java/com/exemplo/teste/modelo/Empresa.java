@@ -1,4 +1,4 @@
-package com.exemple.teste.modelo;
+package com.exemplo.teste.modelo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -69,7 +69,8 @@ public class Empresa implements Serializable{
 		this.endereco = endereco;
 	}
 	
-	@OneToMany (mappedBy="empresa", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	//TODO - EAGER apenas por questão de aprendizado, o mundo real jamas!!!
+	@OneToMany (mappedBy="empresa", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<Funcionario> getFuncionarios() {
 		return funcionarios;
 	}
