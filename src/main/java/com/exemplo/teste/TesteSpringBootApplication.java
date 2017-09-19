@@ -40,14 +40,23 @@ public class TesteSpringBootApplication {
 	}
 	
 	
-	/* - Testa o Banco de Dados MySql ou H2, conforme estiver no aplication.properties
+	// - Testa o Banco de Dados MySql ou H2, conforme estiver no aplication.properties
 	@Bean
 	public CommandLineRunner rodar() {
 		return args -> {
 			Empresa empresa = new Empresa();
 			empresa.setNome("MaTec");
-			
+			empresa.setCnpj("2312331231230001");
+			empresa.setEndereco("Rua blablabla");
+			empresa.setTelefone("974234234");
 			this.empresaRepository.save(empresa);
+			
+			Empresa empresa2 = new Empresa();
+			empresa2.setNome("Enterprise");
+			empresa2.setCnpj("735631231230001");
+			empresa2.setEndereco("Rua lalala");
+			empresa2.setTelefone("543234234");
+			this.empresaRepository.save(empresa2);
 			
 			List<Empresa> listaEmpresa = (ArrayList<Empresa>) this.empresaRepository.findAll();
 			listaEmpresa.forEach(System.out::println);
@@ -56,7 +65,7 @@ public class TesteSpringBootApplication {
 			System.out.println("Busca empresa por nome:" + empresaPorNome.toString());
 		};
 	}
-	*/
+	
 	
 	
 }
