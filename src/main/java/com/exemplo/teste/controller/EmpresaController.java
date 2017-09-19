@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.exemplo.teste.dto.EmpresaDTO;
+import com.exemplo.teste.modelo.Empresa;
 import com.exemplo.teste.servico.EmpresaService;
 
 @RestController
@@ -21,8 +23,11 @@ public class EmpresaController {
 	 * @return
 	 */
 	@GetMapping(value = "/{nome}")
-	public String retornaEmpresaPorNome(@PathVariable("nome") String nome) {
-		return "Olá " + empresaService.retornaEmpresaPorNome(nome);
+	public EmpresaDTO retornaEmpresaPorNome(@PathVariable("nome") String nome) {
+		EmpresaDTO empresaDTO = new EmpresaDTO();
+		Empresa empresa = empresaService.retornaEmpresaPorNome(nome);
+		empresaDTO.setNome(empresa.getNome());
+		return empresaDTO;
 	}
 
 }
