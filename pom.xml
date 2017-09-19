@@ -53,13 +53,13 @@
             <scope>test</scope>
         </dependency>
 	
-		<!-- DATA REST -->
-		<!-- 
+		<!-- Suporte a REST @Controller / Cria um tomcat embbeded-->
+		
 		<dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-rest</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        -->
+        
 	
 		<!-- Usando H2 -->
 		<!--

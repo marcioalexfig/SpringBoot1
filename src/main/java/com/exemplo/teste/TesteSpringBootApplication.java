@@ -13,12 +13,16 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.exemplo.teste.modelo.Empresa;
 import com.exemplo.teste.repositorio.EmpresaRepository;
+import com.exemplo.teste.servico.EmpresaService;
 
 @SpringBootApplication
 public class TesteSpringBootApplication {
 	
-	@Autowired
+	@Autowired //Chama Repository para testar banco
 	private EmpresaRepository empresaRepository;
+	
+	@Autowired
+	private EmpresaService empresaService;
 
 	public static void main(String[] args) {
 		System.out.println("####################  ----  inicio   -----   ######################");
@@ -28,6 +32,15 @@ public class TesteSpringBootApplication {
 	}
 	
 	
+	@Bean
+	public CommandLineRunner rodarServico () {
+		return args -> {
+			this.empresaService.metodoTeste();
+		};
+	}
+	
+	
+	/* - Testa o Banco de Dados MySql ou H2, conforme estiver no aplication.properties
 	@Bean
 	public CommandLineRunner rodar() {
 		return args -> {
@@ -41,9 +54,9 @@ public class TesteSpringBootApplication {
 			
 			Empresa empresaPorNome = this.empresaRepository.findByNome("MaTec");
 			System.out.println("Busca empresa por nome:" + empresaPorNome.toString());
-			
 		};
 	}
+	*/
 	
 	
 }
