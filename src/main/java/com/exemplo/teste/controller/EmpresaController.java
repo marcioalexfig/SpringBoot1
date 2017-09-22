@@ -34,10 +34,14 @@ public class EmpresaController {
 	 * @return
 	 */
 	@GetMapping(value = "/{nome}")
+	//TODO - Substituir EmpresaDTO por ResponseEntity
 	public EmpresaDTO retornaEmpresaPorNome(@PathVariable("nome") String nome) {
 		EmpresaDTO empresaDTO = new EmpresaDTO();
 		Empresa empresa = empresaService.retornaEmpresaPorNome(nome);
+		empresaDTO.setCnpj(empresa.getCnpj());
+		empresaDTO.setTelefone(empresa.getTelefone());
 		empresaDTO.setNome(empresa.getNome());
+		empresaDTO.setEndereco(empresa.getEndereco());
 		return empresaDTO;
 	}
 	
