@@ -33,7 +33,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter{
 				token = token.substring(7);
 		}
 		
-		//extração do username contido no token
+		//extração do username (normalmente é o e-mail) contido no token
 		String username = jwtTokenUtil.retornaUsernameFromToken(token);
 		
 		//pegar detalhes pelo username (email)
