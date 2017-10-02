@@ -3,6 +3,9 @@ package com.exemplo.teste.security;
 
 
 
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -46,6 +49,12 @@ public class AuthenticationController {
 	@Autowired
 	private UserDetailsService userDetaisService;
 	
+	/**
+	 * Autentica e gera o token, além de adicionar no contexto e no response, a autenticação
+	 * @param jwtAuthenticationDTO
+	 * @param result
+	 * @return
+	 */
 	@PostMapping
 	public ResponseEntity<Response<TokenDTO>> gerarToken (@Valid @RequestBody JwtAuthenticationDTO jwtAuthenticationDTO, BindingResult result){
 		Response<TokenDTO> response = new Response<>();
@@ -79,5 +88,38 @@ public class AuthenticationController {
 		return ResponseEntity.ok(response);
 	}
 	
+	/**
+	 * Atualiza o token
+	 * @param request
+	 * @return
+	 */
+	@PostMapping (value = "/refresh")
+	public ResponseEntity<Response<TokenDTO>> geraRefreshToken(HttpServletRequest request){
+		log.info("Gerando novo token");
+		Response<TokenDTO> response = new Response<>();
+		Optional<String> token = Optional.ofNullable(request.getHeader(TOKEN_HEADER));
+		
+		if ( token.isPresent() && token.get().startsWith(BEARER_PREFIX) ) {
+			token = Optional.of(token.get().substring(7));
+		}
+		
+		if ( !token.isPresent() ) {
+			response.getErros().add("Token inexistente");
+		} else if (!jwTokentUtil.tokenValido(token.get())) {
+			response.getErros().add("Token inválido");
+		}
+		
+		if (!response.getErros().isEmpty()) {
+			return ResponseEntity.badRequest().body(response);
+		}
+		
+		//Se existir tokem e se for válido, gerar o refresh
+		String tokenRefresh = jwTokentUtil.refreshToken(token.get());
+		response.setDados(new TokenDTO(tokenRefresh));
+		
+		return ResponseEntity.ok(response);
+	}
+	
 	
 }
+
