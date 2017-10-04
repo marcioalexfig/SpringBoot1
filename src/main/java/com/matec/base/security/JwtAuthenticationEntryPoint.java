@@ -16,7 +16,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authenticationException)
 			throws IOException, ServletException {
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Acesso Negado! ");
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Acesso Negado! Autentique e gere o token para conseguir acessar a aplicação");
 		
 	}
 

@@ -75,7 +75,7 @@ public class AuthenticationController {
 				new UsernamePasswordAuthenticationToken(jwtAuthenticationDTO.getEmail(), jwtAuthenticationDTO.getSenha())
 				);
 		
-			//adiciona o usuario autenticado no contexto
+			//adiciona o usuario autenticado no contexto, isto será verificado no filter http
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		} catch (AuthenticationException e) {
 			log.error(e.getLocalizedMessage());

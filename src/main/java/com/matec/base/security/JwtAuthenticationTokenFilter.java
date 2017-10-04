@@ -36,8 +36,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter{
 		//extração do username (normalmente é o e-mail) contido no token
 		String username = jwtTokenUtil.retornaUsernameFromToken(token);
 		
-		//pegar detalhes pelo username (email)
-		if (username != null && SecurityContextHolder.getContext().getAuthentication() != null) {
+		//pegar detalhes pelo username (email) e verifica se o mesmo está autenticado no contexto da aplicação, valida o token e adiciona o usuario autenticado no contexto
+		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = this.userDetailService.loadUserByUsername(username);
 			
 			//verificar se o token é valido
