@@ -15,8 +15,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import com.matec.base.modelo.Empresa;
 import com.matec.base.modelo.Usuario;
 import com.matec.base.modelo.enums.PerfilEnum;
+import com.matec.base.modelo.mongodb.Cliente;
 import com.matec.base.repositorio.EmpresaRepository;
 import com.matec.base.repositorio.UsuarioRepository;
+import com.matec.base.repositorio.mongodb.ClienteRepository;
 import com.matec.base.security.SenhaUtils;
 import com.matec.base.servico.EmpresaService;
 
@@ -31,6 +33,9 @@ public class TesteSpringBootApplication {
 	*/
 	@Autowired //Chama Repository para testar usuario no banco
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepositorio;
 
 	public static void main(String[] args) {
 		System.out.println("####################  ----  inicio   -----   ######################");
@@ -38,6 +43,24 @@ public class TesteSpringBootApplication {
 		System.out.println("####################  ----  fim   -----   ######################");
 		
 	}
+	
+	/**
+	 * Executa simples teste no MongoDB*/
+	@Bean
+	public CommandLineRunner rodarServico () {
+		return args -> {
+			clienteRepositorio.deleteAll();
+			
+			clienteRepositorio.save(new Cliente("Agostinho",13));
+			clienteRepositorio.save(new Cliente("Pucca",9));
+			clienteRepositorio.save(new Cliente("Márcio Alex",40));
+			
+			System.out.println("Lista Todos com Find");
+			clienteRepositorio.findAll().forEach(System.out::println);
+		};
+	}
+	
+	
 	
 	/**
 	 * Executa uma simples teste para verificar se a aplicação está rodando
