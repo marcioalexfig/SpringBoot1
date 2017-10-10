@@ -24,13 +24,13 @@ import com.matec.base.servico.EmpresaService;
 
 @SpringBootApplication
 public class TesteSpringBootApplication {
-	/*
+	
 	@Autowired //Chama Repository para testar emprena no banco
 	private EmpresaRepository empresaRepository;
 	
 	@Autowired //Carrega o serviço empresa para testar algo relativo a esta classe
 	private EmpresaService empresaService;
-	*/
+	
 	@Autowired //Chama Repository para testar usuario no banco
 	private UsuarioRepository usuarioRepository;
 	
@@ -45,7 +45,7 @@ public class TesteSpringBootApplication {
 	}
 	
 	/**
-	 * Executa simples teste no MongoDB*/
+	 * Executa simples teste no MongoDB
 	@Bean
 	public CommandLineRunner rodarServico () {
 		return args -> {
@@ -59,6 +59,7 @@ public class TesteSpringBootApplication {
 			clienteRepositorio.findAll().forEach(System.out::println);
 		};
 	}
+	*/
 	
 	
 	
@@ -74,7 +75,7 @@ public class TesteSpringBootApplication {
 	
 	
 	// - Testa o Banco de Dados MySql ou H2, conforme estiver no aplication.properties
-	/*
+	
 	@Bean
 	public CommandLineRunner rodar() {
 		return args -> {
@@ -99,8 +100,8 @@ public class TesteSpringBootApplication {
 			System.out.println("Busca empresa por nome:" + empresaPorNome.toString());
 		};
 	}
-	*/
-	/* Adiciona 2 usuarios
+	
+	/* Adiciona 2 usuarios*/
 	@Bean
 	public CommandLineRunner rodarCadastroUsuarios () {
 		return args -> {
@@ -119,7 +120,7 @@ public class TesteSpringBootApplication {
 			usuarioRepository.save(usu2);
 		};
 	}
-	*/
+	
 	
 	
 }
