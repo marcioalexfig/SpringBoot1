@@ -25,17 +25,17 @@ import com.matec.base.servico.EmpresaService;
 @SpringBootApplication
 public class TesteSpringBootApplication {
 	
-	@Autowired //Chama Repository para testar emprena no banco
-	private EmpresaRepository empresaRepository;
+	//@Autowired //Chama Repository para testar emprena no banco
+	//private EmpresaRepository empresaRepository;
 	
-	@Autowired //Carrega o serviço empresa para testar algo relativo a esta classe
-	private EmpresaService empresaService;
+	//@Autowired //Carrega o serviço empresa para testar algo relativo a esta classe
+	//private EmpresaService empresaService;
 	
-	@Autowired //Chama Repository para testar usuario no banco
-	private UsuarioRepository usuarioRepository;
+	//@Autowired //Chama Repository para testar usuario no banco
+	//private UsuarioRepository usuarioRepository;
 	
-	@Autowired
-	private ClienteRepository clienteRepositorio;
+	//@Autowired
+	//private ClienteRepository clienteRepositorio;
 
 	public static void main(String[] args) {
 		System.out.println("####################  ----  inicio   -----   ######################");
@@ -75,7 +75,7 @@ public class TesteSpringBootApplication {
 	
 	
 	// - Testa o Banco de Dados MySql ou H2, conforme estiver no aplication.properties
-	
+	/*
 	@Bean
 	public CommandLineRunner rodar() {
 		return args -> {
@@ -84,14 +84,14 @@ public class TesteSpringBootApplication {
 			empresa.setCnpj("2312331231230001");
 			empresa.setEndereco("Rua blablabla");
 			empresa.setTelefone("974234234");
-			this.empresaRepository.delete(empresa);
+			this.empresaRepository.save(empresa);
 			
 			Empresa empresa2 = new Empresa();
 			empresa2.setNome("Enterprise");
 			empresa2.setCnpj("735631231230001");
 			empresa2.setEndereco("Rua lalala");
 			empresa2.setTelefone("543234234");
-			this.empresaRepository.delete(empresa2);
+			this.empresaRepository.save(empresa2);
 			
 			List<Empresa> listaEmpresa = (ArrayList<Empresa>) this.empresaRepository.findAll();
 			listaEmpresa.forEach(System.out::println);
@@ -100,9 +100,9 @@ public class TesteSpringBootApplication {
 			System.out.println("Busca empresa por nome:" + empresaPorNome.toString());
 		};
 	}
-	
+	*/
 	/* Adiciona 2 usuarios*/
-	@Bean
+	/*@Bean
 	public CommandLineRunner rodarCadastroUsuarios () {
 		return args -> {
 			Usuario usu1 = new Usuario();
@@ -110,16 +110,17 @@ public class TesteSpringBootApplication {
 			usu1.setNome("Usuario 1 - Nao Adm");
 			usu1.setSenha(SenhaUtils.gerarBCript("123456"));
 			usu1.setPerfil(PerfilEnum.ROLE_USUARIO);
-			usuarioRepository.delete(usu1);
+			usuarioRepository.save(usu1);
 			
 			Usuario usu2 = new Usuario();
 			usu2.setEmail("usu2@usu2.com");
 			usu2.setNome("Usuario 2 - Adm");
 			usu2.setSenha(SenhaUtils.gerarBCript("123456"));
 			usu2.setPerfil(PerfilEnum.ROLE_ADMIN);
-			usuarioRepository.delete(usu2);
+			usuarioRepository.save(usu2);
 		};
 	}
+	*/
 	
 	
 	
