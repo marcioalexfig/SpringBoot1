@@ -84,14 +84,14 @@ public class TesteSpringBootApplication {
 			empresa.setCnpj("2312331231230001");
 			empresa.setEndereco("Rua blablabla");
 			empresa.setTelefone("974234234");
-			this.empresaRepository.save(empresa);
+			this.empresaRepository.delete(empresa);
 			
 			Empresa empresa2 = new Empresa();
 			empresa2.setNome("Enterprise");
 			empresa2.setCnpj("735631231230001");
 			empresa2.setEndereco("Rua lalala");
 			empresa2.setTelefone("543234234");
-			this.empresaRepository.save(empresa2);
+			this.empresaRepository.delete(empresa2);
 			
 			List<Empresa> listaEmpresa = (ArrayList<Empresa>) this.empresaRepository.findAll();
 			listaEmpresa.forEach(System.out::println);
@@ -110,14 +110,14 @@ public class TesteSpringBootApplication {
 			usu1.setNome("Usuario 1 - Nao Adm");
 			usu1.setSenha(SenhaUtils.gerarBCript("123456"));
 			usu1.setPerfil(PerfilEnum.ROLE_USUARIO);
-			usuarioRepository.save(usu1);
+			usuarioRepository.delete(usu1);
 			
 			Usuario usu2 = new Usuario();
 			usu2.setEmail("usu2@usu2.com");
 			usu2.setNome("Usuario 2 - Adm");
 			usu2.setSenha(SenhaUtils.gerarBCript("123456"));
 			usu2.setPerfil(PerfilEnum.ROLE_ADMIN);
-			usuarioRepository.save(usu2);
+			usuarioRepository.delete(usu2);
 		};
 	}
 	
